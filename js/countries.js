@@ -85,9 +85,9 @@ let coverage = [
    "geom level": 2,
    "coverage on both": true,
    "Max level covered": 1,
-   "lng":4.6097863,
-   "lat":-83.3889008,
-   "zoom":5
+   "lng":31.8846659,
+   "lat":34.331601,
+   "zoom":9
  },
  {
    "country code": "slv",
@@ -95,9 +95,9 @@ let coverage = [
    "geom level": 2,
    "coverage on both": true,
    "Max level covered": 2,
-   "lng":4.6097863,
-   "lat":-83.3889008,
-   "zoom":5
+   "lng":13.7496798,
+   "lat":-88.707428,
+   "zoom":9
  },
  {
    "country code": "swz",
@@ -105,8 +105,8 @@ let coverage = [
    "geom level": 2,
    "coverage on both": true,
    "Max level covered": 1,
-   "lng":4.6097863,
-   "lat":-83.3889008,
-   "zoom":5
+   "lng":-26.5153367,
+   "lat":31.9023077,
+   "zoom":9
  }
 ]
