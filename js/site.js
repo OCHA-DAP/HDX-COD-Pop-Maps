@@ -130,7 +130,7 @@ function createMap(countryCode,data,level,pop){
 		    		console.log(properties[pcodeAtt]);
 		    		console.log(data);
 		    		console.log(properties);
-		    		mapColor = '#cccccc';
+		    		mapColor = '#999999';
 		    }
 
 	    	return {
