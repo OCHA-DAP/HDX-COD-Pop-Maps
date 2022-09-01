@@ -18,8 +18,9 @@ function init(countryCode,level,pop){
 		countryCode=tempCountry.toUpperCase();
 	}
 	let countryCodeList = createCountrCodeList();
-	$('countryselect').on('change',function(){
-		updateMapMenu();
+	$('#countryselect').on('change',function(){
+		console.log('country change');
+		updateMapMenu($(this).val().toUpperCase());
 	});
 	createCountryMenu(countryCodeList);
 	updateMapMenu(countryCode);
@@ -68,6 +69,8 @@ function removeExistingMap() {
 function updateMapMenu(code){
 	let country = getCountry(code);
 	$('#levelselect').html('');
+	console.log(country);
+	console.log(country['Max level covered']);
 	for(i=1;i<=country['Max level covered'];i++){
 		$('#levelselect').append('<option>'+i+'</option>');
 	}
