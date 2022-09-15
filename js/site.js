@@ -1,7 +1,8 @@
 let colourSchemes = [
-	['#BBDEFB','#90CAF9','#42A5F5','#1E88E5','#1565C0','#0D47A1'],
-	['#B2DFDB','#80CBC4','#26A69A','#00897B','#00695C','#004D40'],
-	['#FFE0B2','#FFCC80','#FFA726','#FB8C00','#EF6C00','#E65100'],
+	['#E0F2F1','#BBDEFB','#64B5F6','#2196F3','#1976D2','#0D47A1'],
+	['#E0F2F1','#B2DFDB','#4DB6AC','#009688','#00796B','#004D40'],
+	['#FFF3E0','#FFE0B2','#FFB74D','#FF9800','#F57C00','#E65100'],
+	['#FF9800','#FFB74D','#FFE0B2','#B2DFDB','#4DB6AC','#009688']
 ];
 
 let adminRef = ['admin1name_en','admin1name_es','admin1name_fr'];
@@ -22,6 +23,7 @@ function init(countryCode,level,pop){
 		console.log('country change');
 		updateMapMenu($(this).val().toUpperCase());
 	});
+
 	createCountryMenu(countryCodeList);
 	updateMapMenu(countryCode);
 	loadData(countryCode,level,pop);
@@ -90,10 +92,15 @@ function createMap(countryCode,data,level,pop){
 
 	let pcodeAtt = 'admin'+level+'pcode';
 
-	let colourIndex = {'total':0,'female':1,'male':2}
+	let colourIndex = {'total':0,'female':1,'male':2,'female percent':3}
 	colourIndex = colourIndex[pop];
-	
-	var basemap =  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+	let values = [0, 50000, 100000, 250000, 500000, 1000000]
+	if(pop=='female percent'){
+		values = [0,45, 47.5, 50, 52.5, 55]
+	}	
+
+	var basemap =  L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {
 	        maxZoom: 19,
 	        attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
 	      });
@@ -114,19 +121,19 @@ function createMap(countryCode,data,level,pop){
 			    		console.log(properties[pcodeAtt]);
 			    	}
 
-			    	if(value>50000){
+			    	if(value>values[1]){
 			    		mapColor = colourSchemes[colourIndex][1]
 			    	}
-			    	if(value>100000){
+			    	if(value>values[2]){
 			    		mapColor = colourSchemes[colourIndex][2]
 			    	}
-			    	if(value>250000){
+			    	if(value>values[3]){
 			    		mapColor = colourSchemes[colourIndex][3]
 			    	}
-			    	if(value>500000){
+			    	if(value>values[4]){
 			    		mapColor = colourSchemes[colourIndex][4]
 			    	}
-			    	if(value>1000000){
+			    	if(value>values[5]){
 			    		mapColor = colourSchemes[colourIndex][5]
 			    	}
 		    } else {
@@ -174,6 +181,7 @@ function createMap(countryCode,data,level,pop){
 	// method that we will use to update the control based on feature properties passed
 	refname.update = function (props) {
 			let name
+			console.log(props);
 			if(props!=undefined){
 				name = getName(props);
 			}
@@ -197,9 +205,12 @@ function createMap(countryCode,data,level,pop){
 	legend.onAdd = function (map) {
 
 		   var div = L.DomUtil.create('div', 'info legend'),
-		        grades = [0, 50000, 100000, 250000, 500000, 1000000],
+		        grades = [0, 50000, 100000, 250000, 500000, 1000000];
+		        if(pop=='female percent'){
+		        	grades = [0,45, 47.5, 50, 52.5, 55];
+		        }
 		        labels = [];
-		  div.innerHTML += '<h4>Population</h4>'
+		  div.innerHTML += '<h4>'+pop.toUpperCase()+'</h4>'
 		   for (var i = 0; i < grades.length; i++) {
 		        div.innerHTML +=
 		            '<p><i style="background:' + colourSchemes[colourIndex][i] + '"></i> ' +
@@ -216,7 +227,8 @@ function processData(data,level){
 	output = {}
 	let pcodeAtt = 'ADM'+level+'_PCODE'
 	data.forEach(function(row){
-		output[row[pcodeAtt]] = {'total':row['T_TL'],'male':row['M_TL'],'female':row['F_TL']}
+		output[row[pcodeAtt]] = {'total':row['T_TL'],'male':row['M_TL'],'female':row['F_TL'],'female percent':row['F_TL']/(row['M_TL']+row['F_TL'])*100}
+		console.log(row['M_TL']/row['F_TL']);
 	});
 	return output
 }
@@ -229,8 +241,8 @@ function loadData(countryCode,level,pop){
 	    url: dataURL,
 	    dataType: 'json',
 	    success:function(response){
-	    	console.log(response[0].Data);
-	    	data = processData(response[0].Data,level);
+	    	console.log(response);
+	    	data = processData(response.data,level);
 	    	createMap(countryCode,data,level,pop);
 	    }
 	});
