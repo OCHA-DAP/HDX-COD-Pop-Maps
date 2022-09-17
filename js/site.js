@@ -5,7 +5,7 @@ let colourSchemes = [
 	['#FF9800','#FFB74D','#FFE0B2','#B2DFDB','#4DB6AC','#009688']
 ];
 
-let adminRef = ['admin1name_en','admin1name_es','admin1name_fr'];
+let adminRef = ['admin1name_en','admin1name_es','admin1name_fr','admin1name_hu'];
 
 
 
@@ -227,7 +227,7 @@ function processData(data,level){
 	output = {}
 	let pcodeAtt = 'ADM'+level+'_PCODE'
 	data.forEach(function(row){
-		output[row[pcodeAtt]] = {'total':row['T_TL'],'male':row['M_TL'],'female':row['F_TL'],'female percent':row['F_TL']/(row['M_TL']+row['F_TL'])*100}
+		output[row[pcodeAtt]] = {'total':row['T_TL'],'male':row['M_TL'],'female':row['F_TL'],'female percent':Math.round(row['F_TL']/(row['M_TL']+row['F_TL'])*1000)/10}
 		console.log(row['M_TL']/row['F_TL']);
 	});
 	return output
