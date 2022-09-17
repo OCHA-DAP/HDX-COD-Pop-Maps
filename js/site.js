@@ -274,7 +274,7 @@ function getQueryVariable(variable)
 }
 
 //inits
-let countryCode = 'COL';
+let countryCode = 'AFG';
 let pop = 'total';
 let level = 1;
 let map
