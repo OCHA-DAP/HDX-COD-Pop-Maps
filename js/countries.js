@@ -124,7 +124,7 @@ let coverage = [
    "pop level": 2,
    "geom level": 2,
    "coverage on both": true,
-   "Max level covered": 3,
+   "Max level covered": 2,
    "lng":32.290178,
    "lat":50.515038,
    "zoom":5
