@@ -7,7 +7,7 @@ let coverage = [
    "Max level covered": 1,
    "lng":33.9162708,
    "lat":65.9789182,
-   "zoom":6
+   "zoom":5
  },
  {
    "country code": "bdi",
@@ -27,7 +27,7 @@ let coverage = [
    "Max level covered": 2,
    "lng":9.3073556,
    "lat":2.3423366,
-   "zoom":7
+   "zoom":6
  },
  {
    "country code": "bol",
@@ -37,7 +37,7 @@ let coverage = [
    "Max level covered": 1,
    "lng":-16.331102,
    "lat":-64.5528731,
-   "zoom":6
+   "zoom":5
  },
  {
    "country code": "btn",
@@ -77,7 +77,7 @@ let coverage = [
    "Max level covered": 1,
    "lng":-1.6504624,
    "lat":-78.9085038,
-   "zoom":7
+   "zoom":6
  },
  {
    "country code": "geo",
@@ -137,7 +137,7 @@ let coverage = [
    "Max level covered": 2,
    "lng":12.14,
    "lat":105,
-   "zoom":7
+   "zoom":6
  },
  {
    "country code": "lao",
@@ -147,7 +147,7 @@ let coverage = [
    "Max level covered": 2,
    "lng":18.2093824,
    "lat":103.8591539,
-   "zoom":6
+   "zoom":5
  },
  {
    "country code": "lka",
@@ -185,9 +185,9 @@ let coverage = [
    "geom level": 3,
    "coverage on both": true,
    "Max level covered": 1,
-   "lng":4.6097863,
+   "lng":8.6097863,
    "lat":-83.3889008,
-   "zoom":5
+   "zoom":6
  },
  {
    "country code": "pse",
@@ -207,7 +207,7 @@ let coverage = [
    "Max level covered": 2,
    "lng":13.7496798,
    "lat":-88.707428,
-   "zoom":9
+   "zoom":8
  },
  {
    "country code": "swz",
@@ -217,6 +217,6 @@ let coverage = [
    "Max level covered": 1,
    "lng":-26.5153367,
    "lat":31.9023077,
-   "zoom":9
+   "zoom":8
  }
 ]
