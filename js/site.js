@@ -7,9 +7,6 @@ let colourSchemes = [
 
 let adminRef = ['admin1name_en','admin1name_es','admin1name_fr','admin1name_hu'];
 
-
-
-
 function init(countryCode,level,pop){
 	let tempCountry = getQueryVariable('iso3');
 	if(tempCountry ==false){
@@ -102,12 +99,12 @@ function createMap(countryCode,data,level,pop){
 
 	var basemap =  L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {
 	        maxZoom: 19,
-	        attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
 	      });
 
 	var CODVectorLayer = L.vectorGrid.protobuf('https://apps.itos.uga.edu/CODV2API/api/v1/Themes/cod-ab/locations/'+countryCode+'/versions/current/'+level+'/{z}/{x}/{y}.pbf', {
 	  maxZoom: 14,
 	  maxNativeZoom: 16,
+    scrollWheelZoom: false,
 	  rendererFactory: L.canvas.tile,
 	  vectorTileLayerStyles: {
 		    PROJ_LIB:function(properties) {
