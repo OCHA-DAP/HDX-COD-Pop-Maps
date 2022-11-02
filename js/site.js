@@ -104,7 +104,6 @@ function createMap(countryCode,data,level,pop){
 	var CODVectorLayer = L.vectorGrid.protobuf('https://apps.itos.uga.edu/CODV2API/api/v1/Themes/cod-ab/locations/'+countryCode+'/versions/current/'+level+'/{z}/{x}/{y}.pbf', {
 	  maxZoom: 14,
 	  maxNativeZoom: 16,
-    scrollWheelZoom: false,
 	  rendererFactory: L.canvas.tile,
 	  vectorTileLayerStyles: {
 		    PROJ_LIB:function(properties) {
@@ -165,7 +164,9 @@ function createMap(countryCode,data,level,pop){
 	  layers: [basemap],
 	  center: [country.lng, country.lat],
 	  maxZoom: 18,
-	  zoom: country.zoom
+	  zoom: country.zoom,
+	  scrollWheelZoom: false,
+    touchZoom: false,
 	});
 	var refname = L.control();
 
