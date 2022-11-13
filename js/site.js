@@ -2,7 +2,8 @@ let colourSchemes = [
 	['#E0F2F1','#BBDEFB','#64B5F6','#2196F3','#1976D2','#0D47A1'],
 	['#E0F2F1','#B2DFDB','#4DB6AC','#009688','#00796B','#004D40'],
 	['#FFF3E0','#FFE0B2','#FFB74D','#FF9800','#F57C00','#E65100'],
-	['#FF9800','#FFB74D','#FFE0B2','#B2DFDB','#4DB6AC','#009688']
+	['#FF9800','#FFB74D','#FFE0B2','#B2DFDB','#4DB6AC','#009688'],
+	['#009688','#4DB6AC','#B2DFDB','#FFE0B2','#FFB74D','#FF9800']
 ];
 
 let adminRef = ['admin1name_en','admin1name_es','admin1name_fr','admin1name_hu'];
@@ -89,11 +90,11 @@ function createMap(countryCode,data,level,pop){
 
 	let pcodeAtt = 'admin'+level+'pcode';
 
-	let colourIndex = {'total':0,'female':1,'male':2,'female percent':3}
+	let colourIndex = {'total':0,'female':1,'male':2,'female percent':3,'male percent':4}
 	colourIndex = colourIndex[pop];
 
 	let values = [0, 50000, 100000, 250000, 500000, 1000000]
-	if(pop=='female percent'){
+	if(pop=='female percent' || pop=='male percent'){
 		values = [0,45, 47.5, 50, 52.5, 55]
 	}	
 
@@ -204,7 +205,7 @@ function createMap(countryCode,data,level,pop){
 
 		   var div = L.DomUtil.create('div', 'info legend'),
 		        grades = [0, 50000, 100000, 250000, 500000, 1000000];
-		        if(pop=='female percent'){
+		        if(pop=='female percent'||pop=='male percent'){
 		        	grades = [0,45, 47.5, 50, 52.5, 55];
 		        }
 		        labels = [];
@@ -225,7 +226,7 @@ function processData(data,level){
 	output = {}
 	let pcodeAtt = 'ADM'+level+'_PCODE'
 	data.forEach(function(row){
-		output[row[pcodeAtt]] = {'total':row['T_TL'],'male':row['M_TL'],'female':row['F_TL'],'female percent':Math.round(row['F_TL']/(row['M_TL']+row['F_TL'])*1000)/10}
+		output[row[pcodeAtt]] = {'total':row['T_TL'],'male':row['M_TL'],'female':row['F_TL'],'female percent':Math.round(row['F_TL']/row['T_TL']*1000)/10,'male percent':Math.round(row['M_TL']/row['T_TL']*1000)/10}
 		console.log(row['M_TL']/row['F_TL']);
 	});
 	return output
