@@ -233,7 +233,7 @@ function processData(data,level){
 }
 
 function loadData(countryCode,level,pop){
-	let dataURL = 'https://beta.itos.uga.edu/CODV2API/api/v1/themes/cod-ps/lookup/Get/'+level+'/aa/'+countryCode
+	let dataURL = 'https://apps.itos.uga.edu/CODV2API/api/v1/themes/cod-ps/lookup/Get/'+level+'/aa/'+countryCode
 	console.log(dataURL);
 	$.ajax({ 
 	    type: 'GET', 
